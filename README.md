@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weather App
+
+A responsive weather dashboard built with **Next.js 16**, **React 19** and **TypeScript**. Search any city to see current conditions and an hourly temperature trend, and switch between metric and imperial units.
+
+## Features
+
+- City search with current temperature, conditions, wind speed and humidity
+- Next-24-hour temperature trend chart (8 forecast points, 3-hour steps) using Recharts
+- Metric / imperial unit toggle
+- Entrance animation with GSAP
+- UI components built on shadcn/ui, Radix and Tailwind CSS
+
+## Tech Stack
+
+| Area | Tools |
+| --- | --- |
+| Framework | Next.js 16 (App Router), React 19, TypeScript |
+| Styling | Tailwind CSS, shadcn/ui, Radix UI, lucide-react |
+| Charts / motion | Recharts, GSAP |
+| Data | [OpenWeatherMap](https://openweathermap.org/api) (Current Weather + 5-day Forecast APIs) |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.18 or newer
+- A free OpenWeatherMap API key
+
+### Setup
+
+```bash
+git clone https://github.com/utshahashresth/weatherapp.git
+cd weatherapp
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```bash
+NEXT_PUBLIC_WEATHER_API=your_openweathermap_api_key
+```
+
+Run the dev server and open <http://localhost:3000>:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+app/             # App Router pages and layout (main UI in page.tsx)
+components/ui/   # shadcn/ui primitives (Button, Input)
+lib/             # Shared utilities
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Notes and Next Steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The API key is read from a `NEXT_PUBLIC_` variable, so it is visible in the browser. Moving the OpenWeatherMap calls behind a Next.js route handler would keep the key server-side.
+- Planned: typed API responses, error and "city not found" states, geolocation lookup.
